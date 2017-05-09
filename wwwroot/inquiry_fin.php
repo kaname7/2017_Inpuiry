@@ -1,6 +1,9 @@
 <?php
 // inquiry_fin.php
 
+ob_start();
+session_start();
+
 //入力された情報を取得
 //$POSTの中にデータが入っていく。↓こんな風にデータを取るよ
 //$email = (string)@$_POST['email'];//@をつける,(string)をつけると後々楽
@@ -51,8 +54,14 @@ $error_detail["error_format_birthday"] = true;
 
 //エラー判定
 if (array() != $error_detail){
-	//
-	echo'エラーがあった・・・だと・・・';
+	//エラー内容をセッションに保持する
+	$_SESSION['buffer']['error_detail'] = $error_detail;
+	//入力情報をセッションに保持する
+	$_SESSION['buffer']['input'] = $input_data;
+	//var_dump($error_detail);
+	//echo'エラーがあった・・・だと・・・';
+	//入力ページに突き返す
+	header('Location: ./inquiry.php');
 	exit;
 }
 //ダミー
