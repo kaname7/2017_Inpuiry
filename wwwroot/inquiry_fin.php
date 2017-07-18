@@ -1,9 +1,8 @@
 <?php
 // inquiry_fin.php
-//https://github.com/smarty-php/smarty/archive/v3.1.30.tar.gz
 
-ob_start();
-session_start();
+
+require_once(__DIR__. '/init.php');
 
 //
 require_once(__DIR__. '/dbh.php');
@@ -119,10 +118,7 @@ if (false === $r){
  
 
 
-//「ありがとう」Pageの出力
+//「ありがとう」
+error_reporting(E_ALL & ~E_NOTICE);
+$smarty_obj->display('inquiry_fin.tpl');
 ?>
-<html>
-<body>
-入力ありがとうございました。
-</body>
-</html>
